@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/Willpicky16/remote-week-ncnews/issues"
   },
-  "homepage": "https://github.com/Willpicky16/remote-week-ncnews#readme"
+  "homepage": "https://github.com/Willpicky16/remote-week-ncnews#readme",
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  }
 }
