@@ -1,0 +1,20 @@
+{
+  "name": "remote-week-ncnews",
+  "version": "1.0.0",
+  "description": "",
+  "main": "config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Willpicky16/remote-week-ncnews.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Willpicky16/remote-week-ncnews/issues"
+  },
+  "homepage": "https://github.com/Willpicky16/remote-week-ncnews#readme"
+}
