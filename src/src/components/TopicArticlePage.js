@@ -4,25 +4,22 @@ import {fetchAllArticles} from '../actions/actions';
 import {ProgressBar, Alert} from 'react-bootstrap';
 import ArticleCard from './ArticleCard';
 
-const ArticleList = React.createClass({
+const TopicArticlePage = React.createClass({
   componentDidMount () {
     this.props.fetchArticles();
   },
   render () {
     if (this.props.loading) return <ProgressBar active now={100}/>;
     if (this.props.error) return (
-      <Alert bsStyle="danger">
+      <Alert bsStyle="danger" onDismiss={this.handleAlertDismiss}>
           <h4>Oh snap! You got an error!</h4>
           <p>Sadly you got an error! Please try again later :(</p>
       </Alert>
     );
     return (
       <div>
-        <div className="jumbotron col-md-12">
-          <h1>All Articles</h1>
-          <a href="/topics/football/articles"><button className="btn btn-primary">Football</button></a>
-          <a href="/topics/cooking/articles"><button className="btn btn-info">Cooking</button></a>
-          <a href="/topics/coding/articles"><button className="btn btn-success">Coding</button></a>
+        <div className="">
+          <a href="/"><button className="btn btn-primary">All Articles</button></a>
         </div>
         <div id="ArticleList">
           {this.renderArticles()}
@@ -32,7 +29,10 @@ const ArticleList = React.createClass({
   },
   renderArticles () {
     return this.props.articles.map((article, key) => {
-      return <ArticleCard key={key} article_id={article._id} title={article.title} votes={article.votes} topic={article.belongs_to} author={article.created_by} comments={article.comments}/>;
+      // if this.props.params.topic === topic something like that
+      if (article.belongs_to === this.props.params.topic) {
+        return <ArticleCard key={key} article_id={article._id} title={article.title} text={article.body} votes={article.votes} topic={article.belongs_to} author={article.created_by} comments={article.comments}/>;
+      }
     });
   }
 });
@@ -53,4 +53,4 @@ function mapDispatchToProps (dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArticleList);
+export default connect(mapStateToProps, mapDispatchToProps)(TopicArticlePage);

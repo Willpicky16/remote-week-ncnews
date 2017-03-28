@@ -7,9 +7,9 @@ const App = React.createClass({
     return (
       <div>
         <NavBar />
-        <div className="col-md-12">
-          {this.props.children}
-        </div>
+          <div className="col-md-12">
+            {this.props.children}
+          </div>
       </div>
     );
   }

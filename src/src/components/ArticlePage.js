@@ -2,9 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {fetchAllArticles} from '../actions/actions';
 import {ProgressBar, Alert} from 'react-bootstrap';
-import ArticleCard from './ArticleCard';
+import SeparateArticle from './SeparateArticle';
+import CommentSection from './CommentSection';
 
-const ArticleList = React.createClass({
+const ArticlePage = React.createClass({
   componentDidMount () {
     this.props.fetchArticles();
   },
@@ -18,21 +19,21 @@ const ArticleList = React.createClass({
     );
     return (
       <div>
-        <div className="jumbotron col-md-12">
-          <h1>All Articles</h1>
-          <a href="/topics/football/articles"><button className="btn btn-primary">Football</button></a>
-          <a href="/topics/cooking/articles"><button className="btn btn-info">Cooking</button></a>
-          <a href="/topics/coding/articles"><button className="btn btn-success">Coding</button></a>
+        <div className="">
+          <a href="/"><button className="btn btn-primary">Back</button></a>
         </div>
-        <div id="ArticleList">
+        <div className="ArticleList">
           {this.renderArticles()}
+          <CommentSection articleId={this.props.params.article_id}/>
         </div>
       </div>
     );
   },
   renderArticles () {
     return this.props.articles.map((article, key) => {
-      return <ArticleCard key={key} article_id={article._id} title={article.title} votes={article.votes} topic={article.belongs_to} author={article.created_by} comments={article.comments}/>;
+      if (article._id === this.props.params.article_id) {
+        return <SeparateArticle key={key} article_id={article._id} title={article.title} text={article.body} votes={article.votes} topic={article.belongs_to} author={article.created_by} comments={article.comments}/>;
+      }
     });
   }
 });
@@ -53,4 +54,4 @@ function mapDispatchToProps (dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArticleList);
+export default connect(mapStateToProps, mapDispatchToProps)(ArticlePage);
