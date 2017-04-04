@@ -39,7 +39,6 @@ export function fetchArticlesError (err) {
 export function fetchAllComments (article_id) {
   return function (dispatch) {
     dispatch(fetchCommentsRequest());
-    console.log(`${ROOT}/articles/${article_id}/comments`);
     axios
       .get(`${ROOT}/articles/${article_id}/comments`)
       .then((res) => {
@@ -67,6 +66,40 @@ export function fetchCommentsSuccess (comments) {
 export function fetchCommentsError (err) {
   return {
     type: types.FETCH_COMMENTS_ERROR,
+    data: err
+  };
+}
+
+export function fetchAllUsers () {
+  return function (dispatch) {
+    dispatch(fetchUsersRequest());
+    axios
+      .get(`${ROOT}/users`)
+      .then((res) => {
+        dispatch(fetchUsersSuccess(res.data.users));
+      })
+      .catch((err) => {
+        dispatch(fetchUsersError(err));
+      });
+  };
+}
+
+export function fetchUsersRequest () {
+  return {
+    type: types.FETCH_USERS_REQUEST
+  };
+}
+
+export function fetchUsersSuccess (users) {
+  return {
+    type: types.FETCH_USERS_SUCCESS,
+    data: users
+  };
+}
+
+export function fetchUsersError (err) {
+  return {
+    type: types.FETCH_USERS_ERROR,
     data: err
   };
 }
