@@ -19,9 +19,9 @@ const UserPage = React.createClass({
     return (
       <div>
         <div className="">
-          <a href="/"><button className="btn btn-primary">Home</button></a>
+          <h1>Users:</h1>
         </div>
-        <div className="user-list">
+        <div id="ArticleList">
           {this.renderUsers()}
         </div>
       </div>
@@ -29,14 +29,14 @@ const UserPage = React.createClass({
   },
   renderUsers () {
     return this.props.users.map((user, key) => {
-      return <UserCard key={key} username={user.username} name={user.name} img={user.avatar_url}/>;
+      return <UserCard key={key} user_id={user.id} username={user.username} name={user.name} avatar_url={user.avatar_url}/>;
     });
   }
 });
 
 function mapStateToProps (state) {
   return {
-    articles: state.users.users,
+    users: state.users.users,
     loading: state.users.loading,
     error: state.users.error
   };

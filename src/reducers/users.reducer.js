@@ -14,7 +14,7 @@ function usersReducer (prevState = initialState, action) {
   }
 
   if (action.type === types.FETCH_USERS_SUCCESS) {
-    newState.comments = action.data;
+    newState.users = action.data;
     newState.loading = false;
   }
 
