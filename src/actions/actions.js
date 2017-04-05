@@ -104,7 +104,7 @@ export function fetchUsersError (err) {
   };
 }
 
-export function voteArticle (vote) {
+export function voteArticle (article_id, vote) {
   return function (dispatch) {
     dispatch(voteArticleRequest());
     axios
