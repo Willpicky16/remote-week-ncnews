@@ -103,3 +103,37 @@ export function fetchUsersError (err) {
     data: err
   };
 }
+
+export function voteArticle (vote) {
+  return function (dispatch) {
+    dispatch(voteArticleRequest());
+    axios
+      .put(`${ROOT}/articles/${article_id}?vote=${vote}`)
+      .then(res => {
+        dispatch(voteArticleSuccess(res.data))
+      })
+      .catch(err => {
+        dispatch(voteArticleError(err))
+      });
+  }
+}
+
+export function voteArticleRequest () {
+  return {
+    type: types.VOTE_ARTICLE_REQUEST
+  };
+}
+
+export function voteArticleSuccess (data) {
+  return {
+    type: types.VOTE_ARTICLE_SUCCESS,
+    data: data
+  };
+}
+
+export function voteArticleError (err) {
+  return {
+    type: types.VOTE_ARTICLE_ERROR,
+    data: err
+  };
+}
