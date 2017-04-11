@@ -46,7 +46,7 @@ const SeparateArticlePage = React.createClass({
   renderArticles () {
     return this.props.articles.map((article, key) => {
       if (article._id === this.props.params.article_id) {
-        return <SeparateArticle key={key} article_id={article._id} title={article.title} text={article.body} votes={article.votes} topic={article.belongs_to} author={article.created_by} comments={article.comments}/>;
+        return <SeparateArticle key={key} article_id={article._id} title={article.title} text={article.body} votes={article.votes} topic={article.belongs_to} author={article.created_by} comments={article.comment_count}/>;
       }
     });
   },
