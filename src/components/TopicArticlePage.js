@@ -4,6 +4,7 @@ import { fetchAllArticles } from '../actions/actions';
 import {ProgressBar, Alert} from 'react-bootstrap';
 import ArticleCard from './ArticleCard';
 
+
 const TopicArticlePage = React.createClass({
   componentDidMount () {
     this.props.fetchArticles();

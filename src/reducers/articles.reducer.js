@@ -2,6 +2,7 @@ import * as types from '../actions/types';
 
 const initialState = {
   articles: [],
+  byId: {},
   loading: false,
   error: null
 };
