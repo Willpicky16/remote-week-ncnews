@@ -7,23 +7,24 @@ const initialState = {
 };
 
 function articlesReducer (prevState = initialState, action) {
-  const newState = Object.assign({}, prevState);
-  
-  if (action.type === types.FETCH_ARTICLES_REQUEST) {
-    newState.loading = true;
+  switch (action.type) {
+    case types.FETCH_ARTICLES_REQUEST:
+      return Object.assign({}, prevState, {
+        loading: true
+      });
+    case types.FETCH_ARTICLES_SUCCESS:
+      return Object.assign({}, prevState, {
+        articles: action.data,
+        loading: false
+      });
+    case types.FETCH_ARTICLES_ERROR:
+      return Object.assign({}, prevState, {
+        error: action.error,
+        loading: false
+      });
+    default:
+      return prevState;
+    }
   }
-
-  if (action.type === types.FETCH_ARTICLES_SUCCESS) {
-    newState.articles = action.data;
-    newState.loading = false;
-  }
-
-  if (action.type === types.FETCH_ARTICLES_ERROR) {
-    newState.error = action.data;
-    newState.loading = false;
-  }
-
-  return newState;
-}
 
 export default articlesReducer;
