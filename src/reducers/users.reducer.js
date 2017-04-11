@@ -6,26 +6,6 @@ const initialState = {
   error: null
 };
 
-// function usersReducer (prevState = initialState, action) {
-//   const newState = Object.assign({}, prevState);
-//
-//   if (action.type === types.FETCH_USERS_REQUEST) {
-//     newState.loading = true;
-//   }
-//
-//   if (action.type === types.FETCH_USERS_SUCCESS) {
-//     newState.users = action.data;
-//     newState.loading = false;
-//   }
-//
-//   if (action.type === types.FETCH_USERS_ERROR) {
-//     newState.error = action.data;
-//     newState.loading = false;
-//   }
-//
-//   return newState;
-// }
-
 function usersReducer (prevState = initialState, action) {
   switch (action.type) {
     case types.FETCH_USERS_REQUEST:
