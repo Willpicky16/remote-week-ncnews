@@ -31,7 +31,9 @@ const ArticleList = React.createClass({
     );
   },
   renderArticles () {
-    return this.props.articles.map((article, key) => {
+    return this.props.articles.sort((a, b) => {
+      return b.votes - a.votes
+    }).map((article, key) => {
       return <ArticleCard key={key} article_id={article._id} title={article.title} votes={article.votes} topic={article.belongs_to} author={article.created_by} comments={article.comment_count}/>;
     });
   }
